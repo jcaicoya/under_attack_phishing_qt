@@ -1,4 +1,4 @@
-#include "SkeletonWindow.h"
+#include "PhisingWindow.h"
 
 #include "ScreenPage.h"
 #include "cybershow/common/CyberOperationalLog.h"
@@ -58,7 +58,7 @@ double displayScaleForOptions(const cybershow::AppLaunchOptions& options)
 
 } // namespace
 
-SkeletonWindow::SkeletonWindow(const cybershow::AppLaunchOptions& options, QWidget* parent)
+PhisingWindow::PhisingWindow(const cybershow::AppLaunchOptions& options, QWidget* parent)
     : QMainWindow(parent)
     , m_options(options)
 {
@@ -75,9 +75,9 @@ SkeletonWindow::SkeletonWindow(const cybershow::AppLaunchOptions& options, QWidg
     qApp->installEventFilter(this);
 }
 
-void SkeletonWindow::buildUi()
+void PhisingWindow::buildUi()
 {
-    setWindowTitle(QStringLiteral("Cybershow Skeleton"));
+    setWindowTitle(QStringLiteral("Phising"));
     setMinimumSize(1024, 700);
 
     auto* central = new CyberBackgroundWidget(this);
@@ -112,7 +112,7 @@ void SkeletonWindow::buildUi()
     setBottomNavVisible(false);
 }
 
-ScreenPage* SkeletonWindow::createPlaceholderPage(const QString& title, const QString& body)
+ScreenPage* PhisingWindow::createPlaceholderPage(const QString& title, const QString& body)
 {
     auto* page = new ScreenPage(QString(), title, this);
 
@@ -124,7 +124,7 @@ ScreenPage* SkeletonWindow::createPlaceholderPage(const QString& title, const QS
     layout->setContentsMargins(28, 28, 28, 28);
     layout->setSpacing(12);
 
-    auto* kicker = new QLabel(QStringLiteral("CYBERSHOW SKELETON"), panel);
+    auto* kicker = new QLabel(QStringLiteral("PHISING"), panel);
     kicker->setObjectName(QStringLiteral("KickerLabel"));
     kicker->setAlignment(Qt::AlignCenter);
 
@@ -148,14 +148,14 @@ ScreenPage* SkeletonWindow::createPlaceholderPage(const QString& title, const QS
     return page;
 }
 
-void SkeletonWindow::wireNavigation()
+void PhisingWindow::wireNavigation()
 {
     connect(m_bottomNav, &BottomNavBar::currentIndexChanged, this, [this](int index) {
         goTo(index);
     });
 }
 
-bool SkeletonWindow::eventFilter(QObject* watched, QEvent* event)
+bool PhisingWindow::eventFilter(QObject* watched, QEvent* event)
 {
     if (event && event->type() == QEvent::KeyPress) {
         if (handleRuntimeKeyPress(static_cast<QKeyEvent*>(event))) {
@@ -166,13 +166,13 @@ bool SkeletonWindow::eventFilter(QObject* watched, QEvent* event)
     return QMainWindow::eventFilter(watched, event);
 }
 
-void SkeletonWindow::resizeEvent(QResizeEvent* event)
+void PhisingWindow::resizeEvent(QResizeEvent* event)
 {
     QMainWindow::resizeEvent(event);
     updateModeBadgeGeometry();
 }
 
-bool SkeletonWindow::focusIsEditable(QWidget* focusWidget) const
+bool PhisingWindow::focusIsEditable(QWidget* focusWidget) const
 {
     if (!focusWidget) return false;
     if (qobject_cast<QLineEdit*>(focusWidget)) return true;
@@ -183,7 +183,7 @@ bool SkeletonWindow::focusIsEditable(QWidget* focusWidget) const
     return false;
 }
 
-bool SkeletonWindow::handleRuntimeKeyPress(QKeyEvent* event)
+bool PhisingWindow::handleRuntimeKeyPress(QKeyEvent* event)
 {
     if (!event || focusIsEditable(QApplication::focusWidget())) {
         return false;
@@ -217,7 +217,7 @@ bool SkeletonWindow::handleRuntimeKeyPress(QKeyEvent* event)
     return false;
 }
 
-void SkeletonWindow::goTo(int index)
+void PhisingWindow::goTo(int index)
 {
     if (!m_stack || index < 0 || index >= m_screens.size()) {
         return;
@@ -231,7 +231,7 @@ void SkeletonWindow::goTo(int index)
     cybershow::OperationalLog::write(QStringLiteral("INFO"), QStringLiteral("navigation"), QString("Screen %1 %2").arg(screen.number).arg(screen.id));
 }
 
-void SkeletonWindow::goToAdjacent(int direction)
+void PhisingWindow::goToAdjacent(int direction)
 {
     if (!m_stack || m_screens.isEmpty()) {
         return;
@@ -242,7 +242,7 @@ void SkeletonWindow::goToAdjacent(int direction)
     goTo(next);
 }
 
-void SkeletonWindow::setupModeBadge()
+void PhisingWindow::setupModeBadge()
 {
     m_modeBadge = new QLabel(this);
     const double scale = displayScaleForOptions(m_options);
@@ -276,7 +276,7 @@ void SkeletonWindow::setupModeBadge()
     setModeBadgeVisible(false);
 }
 
-void SkeletonWindow::updateModeBadgeText()
+void PhisingWindow::updateModeBadgeText()
 {
     if (!m_modeBadge) {
         return;
@@ -287,7 +287,7 @@ void SkeletonWindow::updateModeBadgeText()
         : QStringLiteral("LIVE"));
 }
 
-void SkeletonWindow::updateModeBadgeGeometry()
+void PhisingWindow::updateModeBadgeGeometry()
 {
     if (!m_modeBadge) {
         return;
@@ -301,7 +301,7 @@ void SkeletonWindow::updateModeBadgeGeometry()
     m_modeBadge->raise();
 }
 
-void SkeletonWindow::setModeBadgeVisible(bool visible)
+void PhisingWindow::setModeBadgeVisible(bool visible)
 {
     m_modeBadgeVisible = visible;
     if (!m_modeBadge) {
@@ -316,7 +316,7 @@ void SkeletonWindow::setModeBadgeVisible(bool visible)
     }
 }
 
-void SkeletonWindow::setBottomNavVisible(bool visible)
+void PhisingWindow::setBottomNavVisible(bool visible)
 {
     m_bottomNavVisible = visible;
     if (m_bottomNav) {

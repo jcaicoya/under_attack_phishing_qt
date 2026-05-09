@@ -1,4 +1,4 @@
-# RUNBOOK - Cybershow Skeleton
+# RUNBOOK - Phising
 
 Este documento es para el operador. Resume como arrancar y manejar la aplicacion durante una prueba o una funcion.
 
@@ -7,37 +7,37 @@ Este documento es para el operador. Resume como arrancar y manejar la aplicacion
 Modo live por defecto:
 
 ```powershell
-skeleton.exe
+phising.exe
 ```
 
 Modo live explicito:
 
 ```powershell
-skeleton.exe --live
+phising.exe --live
 ```
 
 Modo demo:
 
 ```powershell
-skeleton.exe --demo
+phising.exe --demo
 ```
 
 Pantalla completa:
 
 ```powershell
-skeleton.exe --live --fullscreen
+phising.exe --live --fullscreen
 ```
 
 Ventana:
 
 ```powershell
-skeleton.exe --demo --windowed
+phising.exe --demo --windowed
 ```
 
 Seleccionar monitor:
 
 ```powershell
-skeleton.exe --live --fullscreen --screen 1
+phising.exe --live --fullscreen --screen 1
 ```
 
 ## Navegacion
@@ -72,5 +72,5 @@ Cerrar la ventana de la aplicacion normalmente.
 Si se esta probando desde consola, revisar despues los logs en:
 
 ```text
-logs\skeleton.log
+logs\phising.log
 ```

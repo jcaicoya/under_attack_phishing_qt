@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(skeleton)
+project(phising)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_AUTOMOC ON)
@@ -14,10 +14,10 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(skeleton
+add_executable(phising
         src/main.cpp
-        src/SkeletonWindow.h
-        src/SkeletonWindow.cpp
+        src/PhisingWindow.h
+        src/PhisingWindow.cpp
         src/ScreenPage.h
         src/ScreenPage.cpp
         src/cybershow/common/CyberAppMode.h
@@ -32,13 +32,13 @@ add_executable(skeleton
         src/cybershow/ui/CyberTheme.h
         src/cybershow/ui/CyberTheme.cpp)
 
-target_link_libraries(skeleton
+target_link_libraries(phising
         Qt::Core
         Qt::Gui
         Qt::Widgets
 )
 
-target_include_directories(skeleton PRIVATE
+target_include_directories(phising PRIVATE
         src
         src/cybershow/common
         src/cybershow/ui)

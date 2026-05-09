@@ -10,8 +10,8 @@ $distDir      = Join-Path $root "dist"
 $releasesFile = Join-Path $root "releases.json"
 $staging      = Join-Path $root "_staging"
 
-$appName      = "skeleton"
-$targetName   = "skeleton"
+$appName      = "phising"
+$targetName   = "phising"
 $exeName      = "$targetName.exe"
 $zipPrefix    = "bajo-ataque-phising"
 
@@ -26,7 +26,7 @@ if ($hasGit) {
     $commitMsg   = git -C $root log -1 --pretty=%s
 } else {
     $commitShort = "nogit"
-    $commitMsg   = "Unversioned skeleton package"
+    $commitMsg   = "Unversioned phising package"
 }
 
 if (-not (Test-Path $releasesFile)) {

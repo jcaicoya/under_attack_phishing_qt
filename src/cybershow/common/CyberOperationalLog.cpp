@@ -52,7 +52,7 @@ QString OperationalLog::filePath()
     const QString basePath = QCoreApplication::applicationDirPath().isEmpty()
         ? QDir::currentPath()
         : QCoreApplication::applicationDirPath();
-    return QDir(basePath).filePath(QStringLiteral("logs/skeleton.log"));
+    return QDir(basePath).filePath(QStringLiteral("logs/phising.log"));
 }
 
 void OperationalLog::write(const QString& level, const QString& component, const QString& message)
@@ -69,7 +69,7 @@ void OperationalLog::write(const QString& level, const QString& component, const
 
     QTextStream out(&file);
     out << QDateTime::currentDateTimeUtc().toString(Qt::ISODate)
-        << " | skeleton | "
+        << " | phising | "
         << sanitize(launchModeField())
         << " | "
         << sanitize(profileField())

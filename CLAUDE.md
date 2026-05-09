@@ -1,25 +1,22 @@
-# CLAUDE.md - Cybershow Skeleton
+# CLAUDE.md - Phising
 
-Working context for Claude, Codex, Gemini, or another coding agent modifying this skeleton or using it as the base for a new Cybershow Qt app.
+Working context for Claude, Codex, Gemini, or another coding agent modifying the Phising Cybershow app.
 
 Do not duplicate the README here. The README is the developer handoff for building, running, launch modes, and packaging. This file is for implementation rules and project intent.
 
 ## Purpose
 
-This is the minimal reusable Qt Widgets runtime shell for Cybershow apps.
+This app was cloned from the shared Qt Widgets runtime shell for Cybershow apps.
 
-It should stay generic:
+It currently has placeholder screens and should be turned into the real Phising module without breaking the shared runtime contract.
 
-- no app-specific network logic
 - no Setup screen
-- no demo event simulation unless a copied app adds it
-- no production content beyond placeholder screens
 - no dependencies on sibling projects
 
 ## Current Contract
 
-- Executable target: `skeleton`
-- Deployed executable: `skeleton.exe`
+- Executable target: `phising`
+- Deployed executable: `phising.exe`
 - Deploy zip prefix: `bajo-ataque-phising`
 - No arguments mean live mode.
 - Supported modes are only `--live` and `--demo`.
@@ -32,26 +29,22 @@ It should stay generic:
 ## Source Map
 
 - `src/main.cpp`: launch parsing, app setup, screen-aware window placement, stdout status lifecycle.
-- `src/SkeletonWindow.*`: two-screen runtime shell, keyboard navigation, bottom nav, mode badge.
+- `src/PhisingWindow.*`: two-screen runtime shell, keyboard navigation, bottom nav, mode badge.
 - `src/ScreenPage.*`: reusable page chrome.
 - `src/cybershow/common/CyberAppMode.*`: launch mode parser.
 - `src/cybershow/common/CyberOperationalLog.*`: operational log writer.
 - `src/cybershow/common/CyberOrchestratorProtocol.h`: `CYBERSHOW_*` stdout lines.
 - `src/cybershow/ui/*`: theme, background, and navigation widgets.
 
-## Rules For Future Apps
+## Implementation Rules
 
-When copying this project to start a new app:
-
-1. Prefer `clone-skeleton.ps1 <new-directory-path>` for the initial copy.
-2. Rename the CMake project, target, executable, app name, log file, and zip prefix.
-3. Keep the shared launch contract unless the Cybershow family standard changes.
-4. Replace placeholder pages in `SkeletonWindow::buildUi()` or split them into app-specific screen builders.
-5. Keep read-only display widgets `Qt::NoFocus`.
-6. Keep `F9`, `F10`, number keys, and arrows consistent across apps.
-7. Keep screen-aware startup sizing and shared theme scaling.
-8. Keep stdout protocol lines stable for orchestration.
-9. Keep operator-facing text in Spanish for real show apps unless a specific app requires otherwise.
+1. Keep the shared launch contract unless the Cybershow family standard changes.
+2. Replace placeholder pages in `PhisingWindow::buildUi()` or split them into app-specific screen builders.
+3. Keep read-only display widgets `Qt::NoFocus`.
+4. Keep `F9`, `F10`, number keys, and arrows consistent across apps.
+5. Keep screen-aware startup sizing and shared theme scaling.
+6. Keep stdout protocol lines stable for orchestration.
+7. Keep operator-facing text in Spanish unless a specific scene requires otherwise.
 
 ## Things Not To Reintroduce
 

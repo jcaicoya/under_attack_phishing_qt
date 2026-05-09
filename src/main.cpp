@@ -1,4 +1,4 @@
-#include "SkeletonWindow.h"
+#include "PhisingWindow.h"
 #include "cybershow/common/CyberAppMode.h"
 #include "cybershow/common/CyberOperationalLog.h"
 #include "cybershow/common/CyberOrchestratorProtocol.h"
@@ -37,7 +37,7 @@ double uiScaleForOptions(const cybershow::AppLaunchOptions& options)
     return qBound(0.85, available.height() / 900.0, 1.15);
 }
 
-void showMainWindow(SkeletonWindow& window, const cybershow::AppLaunchOptions& options)
+void showMainWindow(PhisingWindow& window, const cybershow::AppLaunchOptions& options)
 {
     const QRect available = availableGeometryForScreenIndex(options.screenIndex);
     if (options.fullscreen) {
@@ -77,7 +77,7 @@ void showMainWindow(SkeletonWindow& window, const cybershow::AppLaunchOptions& o
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
-    app.setApplicationName(QStringLiteral("skeleton"));
+    app.setApplicationName(QStringLiteral("phising"));
 
     cybershow::OperationalLog::configure(QStringLiteral("startup"), QStringLiteral("unknown"));
     cybershow::OperationalLog::write(QStringLiteral("INFO"), QStringLiteral("startup"), QStringLiteral("Application process started"));
@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
         cybershow::OperationalLog::write(QStringLiteral("ERROR"), QStringLiteral("startup"), QStringLiteral("Invalid launch arguments"));
         QMessageBox::critical(
             nullptr,
-            QStringLiteral("Cybershow Skeleton - Startup Error"),
+            QStringLiteral("Phising - Startup Error"),
             QStringLiteral("The application cannot start because the launch arguments are invalid.\n\n")
                 + launchParse.error);
         return 2;
@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
     app.setStyle(QStringLiteral("Fusion"));
     app.setStyleSheet(CyberTheme::globalStyleSheet(uiScaleForOptions(launchParse.options)));
 
-    SkeletonWindow window(launchParse.options);
+    PhisingWindow window(launchParse.options);
     showMainWindow(window, launchParse.options);
 
     cybershow::OrchestratorProtocol::status(QStringLiteral("RUNNING"));

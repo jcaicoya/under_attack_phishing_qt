@@ -16,13 +16,13 @@ class QStackedWidget;
 class BottomNavBar;
 class ScreenPage;
 
-class SkeletonWindow : public QMainWindow
+class PhisingWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit SkeletonWindow(const cybershow::AppLaunchOptions& options, QWidget* parent = nullptr);
-    ~SkeletonWindow() override = default;
+    explicit PhisingWindow(const cybershow::AppLaunchOptions& options, QWidget* parent = nullptr);
+    ~PhisingWindow() override = default;
 
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override;
