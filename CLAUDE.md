@@ -20,7 +20,7 @@ It should stay generic:
 
 - Executable target: `skeleton`
 - Deployed executable: `skeleton.exe`
-- Deploy zip prefix: `cybershow-skeleton`
+- Deploy zip prefix: `bajo-ataque-phising`
 - No arguments mean live mode.
 - Supported modes are only `--live` and `--demo`.
 - Runtime screens are operator-controlled.

@@ -103,6 +103,6 @@ Use the same deploy flow as the other Cybershow apps:
 .\package-release.ps1 -Force
 ```
 
-The script builds Release, stages the executable and required Qt runtime files, creates `dist\cybershow-skeleton-vNN.zip`, updates `releases.json`, and creates a matching git tag when the project is inside a git repository.
+The script builds Release, stages the executable and required Qt runtime files, creates `dist\bajo-ataque-phising-vNN.zip`, updates `releases.json`, and creates a matching git tag when the project is inside a git repository.
 
 The deployable artifact is the zip under `dist\`. It contains `skeleton.exe`, required Qt DLLs, the Windows platform plugin, this README, and `RUNBOOK.md`.
