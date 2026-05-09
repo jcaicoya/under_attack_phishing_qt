@@ -6,6 +6,13 @@
       "date": "2026-05-09T17:22:52",
       "message": "Rename release zip prefix to bajo-ataque",
       "zip": "bajo-ataque-phising-v00.zip"
+    },
+    {
+      "version": 1,
+      "commit": "8293cb6",
+      "date": "2026-05-09T17:35:40",
+      "message": "Rename skeleton app identity to phising",
+      "zip": "bajo-ataque-phising-v01.zip"
     }
   ]
 }
