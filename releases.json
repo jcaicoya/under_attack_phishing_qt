@@ -13,6 +13,13 @@
       "date": "2026-05-09T17:35:40",
       "message": "Rename skeleton app identity to phising",
       "zip": "bajo-ataque-phising-v01.zip"
+    },
+    {
+      "version": 2,
+      "commit": "c59e630",
+      "date": "2026-05-10T09:32:04",
+      "message": "Package v01",
+      "zip": "bajo-ataque-phising-v02.zip"
     }
   ]
 }
