@@ -15,6 +15,8 @@ class QStackedWidget;
 
 class BottomNavBar;
 class ScreenPage;
+class UdpBeacon;
+class WebSocketServer;
 
 class PhisingWindow : public QMainWindow
 {
@@ -50,11 +52,17 @@ private:
     void setModeBadgeVisible(bool visible);
     void setBottomNavVisible(bool visible);
 
+    void onClientConnected(bool connected);
+    void onLinkTapped();
+
     cybershow::AppLaunchOptions m_options;
     QList<Screen> m_screens;
 
     QStackedWidget* m_stack = nullptr;
     BottomNavBar* m_bottomNav = nullptr;
+
+    WebSocketServer* m_wsServer = nullptr;
+    UdpBeacon*       m_beacon   = nullptr;
 
     QLabel* m_modeBadge = nullptr;
     QGraphicsOpacityEffect* m_modeBadgeOpacity = nullptr;

@@ -11,11 +11,19 @@ set(CMAKE_PREFIX_PATH "C:/Qt/6.7.3/msvc2022_64")
 find_package(Qt6 COMPONENTS
         Core
         Gui
+        Network
+        WebSockets
         Widgets
         REQUIRED)
 
 add_executable(phising
         src/main.cpp
+        src/AppConfig.h
+        src/AppConfig.cpp
+        src/WebSocketServer.h
+        src/WebSocketServer.cpp
+        src/UdpBeacon.h
+        src/UdpBeacon.cpp
         src/PhisingWindow.h
         src/PhisingWindow.cpp
         src/ScreenPage.h
@@ -35,6 +43,8 @@ add_executable(phising
 target_link_libraries(phising
         Qt::Core
         Qt::Gui
+        Qt::Network
+        Qt::WebSockets
         Qt::Widgets
 )
 
@@ -64,7 +74,7 @@ if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
                 "${QT_INSTALL_PATH}/plugins/platforms/qwindows${DEBUG_SUFFIX}.dll"
                 "$<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/platforms/")
     endif ()
-    foreach (QT_LIB Core Gui Widgets)
+    foreach (QT_LIB Core Gui Network WebSockets Widgets)
         add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
                 COMMAND ${CMAKE_COMMAND} -E copy
                 "${QT_INSTALL_PATH}/bin/Qt6${QT_LIB}${DEBUG_SUFFIX}.dll"

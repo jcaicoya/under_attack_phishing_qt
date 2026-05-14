@@ -1,6 +1,9 @@
 #include "PhisingWindow.h"
 
+#include "AppConfig.h"
 #include "ScreenPage.h"
+#include "UdpBeacon.h"
+#include "WebSocketServer.h"
 #include "cybershow/common/CyberOperationalLog.h"
 #include "cybershow/common/CyberOrchestratorProtocol.h"
 #include "cybershow/ui/BottomNavBar.h"
@@ -66,6 +69,16 @@ PhisingWindow::PhisingWindow(const cybershow::AppLaunchOptions& options, QWidget
         {1, QStringLiteral("principal"), QStringLiteral("Principal"), nullptr},
         {2, QStringLiteral("segunda"), QStringLiteral("Segunda"), nullptr},
     };
+
+    m_wsServer = new WebSocketServer(this);
+    m_beacon   = new UdpBeacon(static_cast<quint16>(AppConfig::instance().wsPort), this);
+
+    connect(m_wsServer, &WebSocketServer::clientConnected,
+            this, &PhisingWindow::onClientConnected);
+    connect(m_wsServer, &WebSocketServer::linkTapped,
+            this, &PhisingWindow::onLinkTapped);
+
+    m_beacon->start();
 
     buildUi();
     wireNavigation();
@@ -322,4 +335,21 @@ void PhisingWindow::setBottomNavVisible(bool visible)
     if (m_bottomNav) {
         m_bottomNav->setVisible(visible);
     }
+}
+
+void PhisingWindow::onClientConnected(bool connected)
+{
+    cybershow::OperationalLog::write(
+        QStringLiteral("INFO"),
+        QStringLiteral("websocket"),
+        connected ? QStringLiteral("Android conectado") : QStringLiteral("Android desconectado"));
+}
+
+void PhisingWindow::onLinkTapped()
+{
+    cybershow::OperationalLog::write(
+        QStringLiteral("INFO"),
+        QStringLiteral("websocket"),
+        QStringLiteral("Link pulsado en Android"));
+    // TODO: navigate to screen 5 (climax) when implemented
 }
