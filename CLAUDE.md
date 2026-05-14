@@ -1,4 +1,4 @@
-# CLAUDE.md - Phising
+# CLAUDE.md - Phising-Qt
 
 Working context for Claude, Codex, Gemini, or another coding agent modifying the Phising Cybershow app.
 
