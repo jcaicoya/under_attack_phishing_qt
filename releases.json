@@ -20,6 +20,20 @@
       "date": "2026-05-10T09:32:04",
       "message": "Package v01",
       "zip": "bajo-ataque-phising-v02.zip"
+    },
+    {
+      "version": 3,
+      "commit": "nogit",
+      "date": "2026-05-15T16:35:14",
+      "message": "Unversioned phishing package",
+      "zip": "bajo-ataque-phishing-v03.zip"
+    },
+    {
+      "version": 4,
+      "commit": "eb24ca8",
+      "date": "2026-05-15T16:37:59",
+      "message": "Mark WebSocket server done — end-to-end test successful",
+      "zip": "bajo-ataque-phishing-v04.zip"
     }
   ]
 }

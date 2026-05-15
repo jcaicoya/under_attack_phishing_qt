@@ -7,7 +7,7 @@
 
 WebSocketServer::WebSocketServer(QObject* parent)
     : QObject(parent)
-    , m_server(new QWebSocketServer("phising", QWebSocketServer::NonSecureMode, this))
+    , m_server(new QWebSocketServer("under_attack_phishing_qt", QWebSocketServer::NonSecureMode, this))
 {
     m_port = static_cast<quint16>(AppConfig::instance().wsPort);
     if (m_server->listen(QHostAddress::Any, m_port)) {

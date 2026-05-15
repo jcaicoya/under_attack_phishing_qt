@@ -1,4 +1,4 @@
-# RUNBOOK - Phising
+# RUNBOOK - Phishing
 
 Este documento es para el operador. Resume como arrancar y manejar la aplicacion durante una prueba o una funcion.
 
@@ -7,37 +7,37 @@ Este documento es para el operador. Resume como arrancar y manejar la aplicacion
 Modo live por defecto:
 
 ```powershell
-phising.exe
+under_attack_phishing_qt.exe
 ```
 
 Modo live explicito:
 
 ```powershell
-phising.exe --live
+under_attack_phishing_qt.exe --live
 ```
 
 Modo demo:
 
 ```powershell
-phising.exe --demo
+under_attack_phishing_qt.exe --demo
 ```
 
 Pantalla completa:
 
 ```powershell
-phising.exe --live --fullscreen
+under_attack_phishing_qt.exe --live --fullscreen
 ```
 
 Ventana:
 
 ```powershell
-phising.exe --demo --windowed
+under_attack_phishing_qt.exe --demo --windowed
 ```
 
 Seleccionar monitor:
 
 ```powershell
-phising.exe --live --fullscreen --screen 1
+under_attack_phishing_qt.exe --live --fullscreen --screen 1
 ```
 
 ## Navegacion
@@ -72,5 +72,5 @@ Cerrar la ventana de la aplicacion normalmente.
 Si se esta probando desde consola, revisar despues los logs en:
 
 ```text
-logs\phising.log
+logs\phishing.log
 ```

@@ -1,6 +1,6 @@
-# Phising
+# Phishing
 
-Phising is a Qt Widgets Cybershow application.
+Phishing is a Qt Widgets Cybershow application.
 
 This project intentionally contains no app-specific functionality. It provides the common runtime shell:
 
@@ -17,12 +17,12 @@ This project intentionally contains no app-specific functionality. It provides t
 No arguments means live mode.
 
 ```powershell
-phising.exe
-phising.exe --live
-phising.exe --demo
-phising.exe --fullscreen
-phising.exe --windowed
-phising.exe --screen 1
+under_attack_phishing_qt.exe
+under_attack_phishing_qt.exe --live
+under_attack_phishing_qt.exe --demo
+under_attack_phishing_qt.exe --fullscreen
+under_attack_phishing_qt.exe --windowed
+under_attack_phishing_qt.exe --screen 1
 ```
 
 Supported launch modes:
@@ -64,9 +64,9 @@ cmake --build build\msvc2022 --config Release
 Run the built executable:
 
 ```powershell
-.\build\msvc2022\Release\phising.exe
-.\build\msvc2022\Release\phising.exe --demo --windowed
-.\build\msvc2022\Release\phising.exe --live --fullscreen
+.\build\msvc2022\Release\under_attack_phishing_qt.exe
+.\build\msvc2022\Release\under_attack_phishing_qt.exe --demo --windowed
+.\build\msvc2022\Release\under_attack_phishing_qt.exe --live --fullscreen
 ```
 
 During runtime:
@@ -89,7 +89,7 @@ When copying this project to create a new app:
 The target path may be relative or absolute. It must be provided, must not already exist, and must be outside this skeleton directory. The script copies source/template files and excludes local IDE, build, staging, dist, log, and git metadata.
 
 2. Rename the project and executable in `CMakeLists.txt`.
-3. Replace the two placeholder screens in `PhisingWindow.cpp`.
+3. Replace the two placeholder screens in `PhishingWindow.cpp`.
 4. Keep the launch contract unless the whole Cybershow standard changes.
 5. Keep `F9`, `F10`, number keys, and arrow navigation consistent with the other apps.
 6. Keep read-only display widgets non-focusable so keyboard navigation remains reliable.
@@ -103,6 +103,6 @@ Use the same deploy flow as the other Cybershow apps:
 .\package-release.ps1 -Force
 ```
 
-The script builds Release, stages the executable and required Qt runtime files, creates `dist\bajo-ataque-phising-vNN.zip`, updates `releases.json`, and creates a matching git tag when the project is inside a git repository.
+The script builds Release, stages the executable and required Qt runtime files, creates `dist\bajo-ataque-phishing-vNN.zip`, updates `releases.json`, and creates a matching git tag when the project is inside a git repository.
 
-The deployable artifact is the zip under `dist\`. It contains `phising.exe`, required Qt DLLs, the Windows platform plugin, this README, and `RUNBOOK.md`.
+The deployable artifact is the zip under `dist\`. It contains `under_attack_phishing_qt.exe`, required Qt DLLs, the Windows platform plugin, this README, and `RUNBOOK.md`.

@@ -18,13 +18,13 @@ class ScreenPage;
 class UdpBeacon;
 class WebSocketServer;
 
-class PhisingWindow : public QMainWindow
+class PhishingWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit PhisingWindow(const cybershow::AppLaunchOptions& options, QWidget* parent = nullptr);
-    ~PhisingWindow() override = default;
+    explicit PhishingWindow(const cybershow::AppLaunchOptions& options, QWidget* parent = nullptr);
+    ~PhishingWindow() override = default;
 
 protected:
     bool eventFilter(QObject* watched, QEvent* event) override;

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28)
-project(phising)
+project(under_attack_phishing_qt)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_AUTOMOC ON)
@@ -16,7 +16,7 @@ find_package(Qt6 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(phising
+add_executable(under_attack_phishing_qt
         src/main.cpp
         src/AppConfig.h
         src/AppConfig.cpp
@@ -24,8 +24,8 @@ add_executable(phising
         src/WebSocketServer.cpp
         src/UdpBeacon.h
         src/UdpBeacon.cpp
-        src/PhisingWindow.h
-        src/PhisingWindow.cpp
+        src/PhishingWindow.h
+        src/PhishingWindow.cpp
         src/ScreenPage.h
         src/ScreenPage.cpp
         src/cybershow/common/CyberAppMode.h
@@ -40,7 +40,7 @@ add_executable(phising
         src/cybershow/ui/CyberTheme.h
         src/cybershow/ui/CyberTheme.cpp)
 
-target_link_libraries(phising
+target_link_libraries(under_attack_phishing_qt
         Qt::Core
         Qt::Gui
         Qt::Network
@@ -48,7 +48,7 @@ target_link_libraries(phising
         Qt::Widgets
 )
 
-target_include_directories(phising PRIVATE
+target_include_directories(under_attack_phishing_qt PRIVATE
         src
         src/cybershow/common
         src/cybershow/ui)

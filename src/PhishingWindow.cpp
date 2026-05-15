@@ -1,4 +1,4 @@
-#include "PhisingWindow.h"
+#include "PhishingWindow.h"
 
 #include "AppConfig.h"
 #include "ScreenPage.h"
@@ -61,7 +61,7 @@ double displayScaleForOptions(const cybershow::AppLaunchOptions& options)
 
 } // namespace
 
-PhisingWindow::PhisingWindow(const cybershow::AppLaunchOptions& options, QWidget* parent)
+PhishingWindow::PhishingWindow(const cybershow::AppLaunchOptions& options, QWidget* parent)
     : QMainWindow(parent)
     , m_options(options)
 {
@@ -74,9 +74,9 @@ PhisingWindow::PhisingWindow(const cybershow::AppLaunchOptions& options, QWidget
     m_beacon   = new UdpBeacon(static_cast<quint16>(AppConfig::instance().wsPort), this);
 
     connect(m_wsServer, &WebSocketServer::clientConnected,
-            this, &PhisingWindow::onClientConnected);
+            this, &PhishingWindow::onClientConnected);
     connect(m_wsServer, &WebSocketServer::linkTapped,
-            this, &PhisingWindow::onLinkTapped);
+            this, &PhishingWindow::onLinkTapped);
 
     m_beacon->start();
 
@@ -88,9 +88,9 @@ PhisingWindow::PhisingWindow(const cybershow::AppLaunchOptions& options, QWidget
     qApp->installEventFilter(this);
 }
 
-void PhisingWindow::buildUi()
+void PhishingWindow::buildUi()
 {
-    setWindowTitle(QStringLiteral("Phising"));
+    setWindowTitle(QStringLiteral("Phishing"));
     setMinimumSize(1024, 700);
 
     auto* central = new CyberBackgroundWidget(this);
@@ -125,7 +125,7 @@ void PhisingWindow::buildUi()
     setBottomNavVisible(false);
 }
 
-ScreenPage* PhisingWindow::createPlaceholderPage(const QString& title, const QString& body)
+ScreenPage* PhishingWindow::createPlaceholderPage(const QString& title, const QString& body)
 {
     auto* page = new ScreenPage(QString(), title, this);
 
@@ -137,7 +137,7 @@ ScreenPage* PhisingWindow::createPlaceholderPage(const QString& title, const QSt
     layout->setContentsMargins(28, 28, 28, 28);
     layout->setSpacing(12);
 
-    auto* kicker = new QLabel(QStringLiteral("PHISING"), panel);
+    auto* kicker = new QLabel(QStringLiteral("PHISHING"), panel);
     kicker->setObjectName(QStringLiteral("KickerLabel"));
     kicker->setAlignment(Qt::AlignCenter);
 
@@ -161,14 +161,14 @@ ScreenPage* PhisingWindow::createPlaceholderPage(const QString& title, const QSt
     return page;
 }
 
-void PhisingWindow::wireNavigation()
+void PhishingWindow::wireNavigation()
 {
     connect(m_bottomNav, &BottomNavBar::currentIndexChanged, this, [this](int index) {
         goTo(index);
     });
 }
 
-bool PhisingWindow::eventFilter(QObject* watched, QEvent* event)
+bool PhishingWindow::eventFilter(QObject* watched, QEvent* event)
 {
     if (event && event->type() == QEvent::KeyPress) {
         if (handleRuntimeKeyPress(static_cast<QKeyEvent*>(event))) {
@@ -179,13 +179,13 @@ bool PhisingWindow::eventFilter(QObject* watched, QEvent* event)
     return QMainWindow::eventFilter(watched, event);
 }
 
-void PhisingWindow::resizeEvent(QResizeEvent* event)
+void PhishingWindow::resizeEvent(QResizeEvent* event)
 {
     QMainWindow::resizeEvent(event);
     updateModeBadgeGeometry();
 }
 
-bool PhisingWindow::focusIsEditable(QWidget* focusWidget) const
+bool PhishingWindow::focusIsEditable(QWidget* focusWidget) const
 {
     if (!focusWidget) return false;
     if (qobject_cast<QLineEdit*>(focusWidget)) return true;
@@ -196,7 +196,7 @@ bool PhisingWindow::focusIsEditable(QWidget* focusWidget) const
     return false;
 }
 
-bool PhisingWindow::handleRuntimeKeyPress(QKeyEvent* event)
+bool PhishingWindow::handleRuntimeKeyPress(QKeyEvent* event)
 {
     if (!event || focusIsEditable(QApplication::focusWidget())) {
         return false;
@@ -230,7 +230,7 @@ bool PhisingWindow::handleRuntimeKeyPress(QKeyEvent* event)
     return false;
 }
 
-void PhisingWindow::goTo(int index)
+void PhishingWindow::goTo(int index)
 {
     if (!m_stack || index < 0 || index >= m_screens.size()) {
         return;
@@ -244,7 +244,7 @@ void PhisingWindow::goTo(int index)
     cybershow::OperationalLog::write(QStringLiteral("INFO"), QStringLiteral("navigation"), QString("Screen %1 %2").arg(screen.number).arg(screen.id));
 }
 
-void PhisingWindow::goToAdjacent(int direction)
+void PhishingWindow::goToAdjacent(int direction)
 {
     if (!m_stack || m_screens.isEmpty()) {
         return;
@@ -255,7 +255,7 @@ void PhisingWindow::goToAdjacent(int direction)
     goTo(next);
 }
 
-void PhisingWindow::setupModeBadge()
+void PhishingWindow::setupModeBadge()
 {
     m_modeBadge = new QLabel(this);
     const double scale = displayScaleForOptions(m_options);
@@ -289,7 +289,7 @@ void PhisingWindow::setupModeBadge()
     setModeBadgeVisible(false);
 }
 
-void PhisingWindow::updateModeBadgeText()
+void PhishingWindow::updateModeBadgeText()
 {
     if (!m_modeBadge) {
         return;
@@ -300,7 +300,7 @@ void PhisingWindow::updateModeBadgeText()
         : QStringLiteral("LIVE"));
 }
 
-void PhisingWindow::updateModeBadgeGeometry()
+void PhishingWindow::updateModeBadgeGeometry()
 {
     if (!m_modeBadge) {
         return;
@@ -314,7 +314,7 @@ void PhisingWindow::updateModeBadgeGeometry()
     m_modeBadge->raise();
 }
 
-void PhisingWindow::setModeBadgeVisible(bool visible)
+void PhishingWindow::setModeBadgeVisible(bool visible)
 {
     m_modeBadgeVisible = visible;
     if (!m_modeBadge) {
@@ -329,7 +329,7 @@ void PhisingWindow::setModeBadgeVisible(bool visible)
     }
 }
 
-void PhisingWindow::setBottomNavVisible(bool visible)
+void PhishingWindow::setBottomNavVisible(bool visible)
 {
     m_bottomNavVisible = visible;
     if (m_bottomNav) {
@@ -337,7 +337,7 @@ void PhisingWindow::setBottomNavVisible(bool visible)
     }
 }
 
-void PhisingWindow::onClientConnected(bool connected)
+void PhishingWindow::onClientConnected(bool connected)
 {
     cybershow::OperationalLog::write(
         QStringLiteral("INFO"),
@@ -345,7 +345,7 @@ void PhisingWindow::onClientConnected(bool connected)
         connected ? QStringLiteral("Android conectado") : QStringLiteral("Android desconectado"));
 }
 
-void PhisingWindow::onLinkTapped()
+void PhishingWindow::onLinkTapped()
 {
     cybershow::OperationalLog::write(
         QStringLiteral("INFO"),

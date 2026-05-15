@@ -1,12 +1,12 @@
-# NEXT_STEPS — Phising-Qt
+# NEXT_STEPS — Phishing-Qt
 
 ## Done
 - [x] Cloned from shared Qt Widgets skeleton
-- [x] Renamed from `phising` to `phising-qt` (directory, `.idea/.name`)
+- [x] Renamed from `phising` to `phishing_qt` (directory, `.idea/.name`)
 - [x] `CLAUDE.md` updated and moved to `.claude/CLAUDE.md`
 - [x] `NEXT_STEPS.md` created
 - [x] Add WebSocket server (port 8769) + UDP beacon (port 8770)
-- [x] End-to-end connection test with `phising-android` — successful
+- [x] End-to-end connection test with `phishing_android` — successful
 
 ## Pending
 
