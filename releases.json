@@ -34,6 +34,13 @@
       "date": "2026-05-15T16:37:59",
       "message": "Mark WebSocket server done — end-to-end test successful",
       "zip": "bajo-ataque-phishing-v04.zip"
+    },
+    {
+      "version": 5,
+      "commit": "025c3b2",
+      "date": "2026-05-15T16:49:39",
+      "message": "Align phishing Qt naming and packaging",
+      "zip": "bajo-ataque-phishing-v05.zip"
     }
   ]
 }
