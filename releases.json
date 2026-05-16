@@ -48,6 +48,13 @@
       "date": "2026-05-16T10:40:00",
       "message": "Rename package-release.ps1 to package_release.ps1 (snake_case)",
       "zip": "bajo-ataque-phishing-v06.zip"
+    },
+    {
+      "version": 7,
+      "commit": "09c4251",
+      "date": "2026-05-16T13:58:49",
+      "message": "Publish releases directly to shared dist directories",
+      "zip": "bajo-ataque-phishing-v07.zip"
     }
   ]
 }
