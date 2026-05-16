@@ -55,6 +55,13 @@
       "date": "2026-05-16T13:58:49",
       "message": "Publish releases directly to shared dist directories",
       "zip": "bajo-ataque-phishing-v07.zip"
+    },
+    {
+      "version": 8,
+      "commit": "4c2ec34",
+      "date": "2026-05-16T14:14:21",
+      "message": "Include networking DLLs in phishing Qt release",
+      "zip": "bajo-ataque-phishing-v08.zip"
     }
   ]
 }
