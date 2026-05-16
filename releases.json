@@ -69,6 +69,13 @@
       "date": "2026-05-16T17:36:46",
       "message": "Store Qt release archives at dist root",
       "zip": "phishing_qt_v09.zip"
+    },
+    {
+      "version": 10,
+      "commit": "d73fcef",
+      "date": "2026-05-16T19:14:44",
+      "message": "Remove unused --debug flag from CyberAppMode",
+      "zip": "phishing_qt_v10.zip"
     }
   ]
 }
