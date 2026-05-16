@@ -41,6 +41,13 @@
       "date": "2026-05-15T16:49:39",
       "message": "Align phishing Qt naming and packaging",
       "zip": "bajo-ataque-phishing-v05.zip"
+    },
+    {
+      "version": 6,
+      "commit": "a003b86",
+      "date": "2026-05-16T10:40:00",
+      "message": "Rename package-release.ps1 to package_release.ps1 (snake_case)",
+      "zip": "bajo-ataque-phishing-v06.zip"
     }
   ]
 }
