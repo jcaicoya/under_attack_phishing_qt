@@ -76,6 +76,13 @@
       "date": "2026-05-16T19:14:44",
       "message": "Remove unused --debug flag from CyberAppMode",
       "zip": "phishing_qt_v10.zip"
+    },
+    {
+      "version": 11,
+      "commit": "7bef501",
+      "date": "2026-05-17T11:58:42",
+      "message": "Standardize project docs and package runbook",
+      "zip": "phishing_qt_v11.zip"
     }
   ]
 }
