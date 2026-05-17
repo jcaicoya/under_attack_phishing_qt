@@ -1,76 +1,86 @@
-# RUNBOOK - Phishing
-
-Este documento es para el operador. Resume como arrancar y manejar la aplicacion durante una prueba o una funcion.
+# RUNBOOK - Phishing Qt
 
 ## Arranque
 
-Modo live por defecto:
+Modo runtime por defecto:
 
 ```powershell
 under_attack_phishing_qt.exe
 ```
 
-Modo live explicito:
+Variantes de arranque:
 
 ```powershell
 under_attack_phishing_qt.exe --live
-```
-
-Modo demo:
-
-```powershell
 under_attack_phishing_qt.exe --demo
+under_attack_phishing_qt.exe --fullscreen
+under_attack_phishing_qt.exe --windowed
+under_attack_phishing_qt.exe --screen 1
+under_attack_phishing_qt.exe --debug
 ```
 
-Pantalla completa:
+## Navegación
 
-```powershell
-under_attack_phishing_qt.exe --live --fullscreen
-```
-
-Ventana:
-
-```powershell
-under_attack_phishing_qt.exe --demo --windowed
-```
-
-Seleccionar monitor:
-
-```powershell
-under_attack_phishing_qt.exe --live --fullscreen --screen 1
-```
-
-## Navegacion
-
-- `1`: ir a la pantalla 1
-- `2`: ir a la pantalla 2
+- `1`: pantalla 1
+- `2`: pantalla 2
 - `Left Arrow`: pantalla anterior
 - `Right Arrow`: pantalla siguiente
-- `F9`: mostrar u ocultar la barra inferior de navegacion
+- `F9`: mostrar u ocultar la barra inferior de navegación
 - `F10`: mostrar u ocultar el indicador `DEMO` / `LIVE`
 
-## Durante El Show
+## Manejo durante el show
 
 - La barra inferior empieza oculta.
 - El indicador `DEMO` / `LIVE` empieza oculto.
-- La navegacion esta pensada para hacerse desde teclado.
-- No hay pantalla de Setup.
-- Si se ejecuta sin argumentos, la aplicacion entra en modo `LIVE`.
+- La navegación está pensada para teclado.
+- No hay pantalla de setup.
+- Si se ejecuta sin argumentos, entra en modo runtime por defecto.
 
-## Pantallas
+## Flujo operativo previsto
 
-1. `Pantalla base`
-   - pantalla placeholder para sustituir por la primera experiencia real de la app.
+1. Elegir tipo de mensaje.
+2. Elegir detalle técnico.
+3. Elegir amenaza.
+4. Elegir urgencia.
+5. Enviar el mensaje construido a Android.
+6. Esperar a que Android informe `link_tapped`.
+7. Mostrar la pantalla de clímax.
 
-2. `Segunda pantalla`
-   - pantalla placeholder para sustituir por la segunda experiencia real de la app.
+## Conectividad con Android
 
-## Cierre
+- La app actúa como servidor WebSocket.
+- Puerto: `8769`.
+- `phishing_android` conecta como cliente.
+- La integración esperada con Orchestrator incluye ADB reverse y lanzamiento remoto de la app Android.
 
-Cerrar la ventana de la aplicacion normalmente.
+## Deploy
 
-Si se esta probando desde consola, revisar despues los logs en:
+### Requisitos
 
-```text
-logs\phishing.log
+- Qt 6.7.3 para MSVC 2022 64-bit
+- CMake 3.28+
+- Visual Studio 2022 C++ toolchain
+- Visual C++ Redistributable en la máquina destino
+
+### Build manual
+
+```powershell
+cmake -S . -B build\msvc2022 -DCMAKE_BUILD_TYPE=Release
+cmake --build build\msvc2022 --config Release
 ```
+
+### Packaging
+
+```powershell
+.\package-release.ps1
+.\package-release.ps1 -Force
+```
+
+- genera `dist\bajo-ataque-phishing-vNN.zip`
+- el artefacto desplegable es el zip bajo `dist\`
+
+## Consideraciones operativas
+
+- El flujo final de escena todavía está en construcción.
+- La pantalla de clímax no debe entrar en la navegación normal.
+- La app debe mantenerse alineada con `phishing_android` en protocolo y tiempos de show.

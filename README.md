@@ -1,108 +1,80 @@
-# Phishing
+# Phishing Qt
 
-Phishing is a Qt Widgets Cybershow application.
+Consola de operador para la escena de phishing del show **Bajo Ataque**. La persona presentadora guía al público en la construcción progresiva de un SMS de phishing convincente y envía cada versión a `phishing_android`.
 
-This project intentionally contains no app-specific functionality. It provides the common runtime shell:
+## Qué es
 
-- two placeholder screens
-- shared Cybershow look and feel
-- bottom navigation, hidden by default
-- `F9` toggles the bottom navigation row
-- `F10` toggles the `DEMO` / `LIVE` badge
-- number keys and arrows navigate between screens
-- no Setup screen
+Esta app forma pareja con `phishing_android`. Su papel es construir el mensaje de phishing por capas, enviarlo al dispositivo Android y reaccionar cuando el enlace falso es pulsado.
 
-## Launch Modes
+## Flujo funcional
 
-No arguments means live mode.
+1. El operador elige el tipo de mensaje.
+2. Define detalle técnico.
+3. Define amenaza.
+4. Define urgencia.
+5. Envía la versión construida del mensaje a Android.
+6. Si Android informa `link_tapped`, la app pasa a la pantalla de clímax.
 
-```powershell
-under_attack_phishing_qt.exe
-under_attack_phishing_qt.exe --live
-under_attack_phishing_qt.exe --demo
-under_attack_phishing_qt.exe --fullscreen
-under_attack_phishing_qt.exe --windowed
-under_attack_phishing_qt.exe --screen 1
-```
+## Pantallas
 
-Supported launch modes:
+### Pantallas 1–4: builder
 
-- `--live`
-- `--demo`
+| # | Pantalla | Función |
+|---|---|---|
+| 1 | Tipo | Banco / Multa de tráfico / Correos |
+| 2 | Detalle | detalle técnico del mensaje |
+| 3 | Amenaza | consecuencia o amenaza |
+| 4 | Urgencia | presión temporal |
 
-Supported display flags:
+Todas comparten la misma estructura:
 
-- `--fullscreen`
-- `--windowed`
-- `--screen <n>`
-- `--debug`
+- tipo activo
+- tres opciones seleccionables
+- panel del mensaje construido
+- botón de envío
 
-## Requirements
+### Pantalla 5: clímax
 
-- Qt 6.7.3 for MSVC 2022 64-bit
-- CMake 3.28+
-- Visual Studio 2022 C++ toolchain
-- Windows target machine with the Visual C++ Redistributable
+- se activa al recibir `link_tapped`
+- no debe estar en la navegación normal
+- momento final y teatral de la escena
 
-`CMakeLists.txt` currently points to:
+## Arquitectura y comunicación
 
-```cmake
-set(CMAKE_PREFIX_PATH "C:/Qt/6.7.3/msvc2022_64")
-```
+- Aplicación Qt para Windows.
+- Servidor WebSocket en `8769`.
+- `phishing_android` actúa como cliente.
+- Se apoya en ADB reverse y en integración futura con Orchestrator.
 
-Change that path if Qt is installed somewhere else.
+Protocolo:
 
-## Build And Run
+| Dirección | Evento | Mensaje |
+|---|---|---|
+| Qt -> Android | enviar mensaje | `{"type": "message", "body": "...", "link": "..."}` |
+| Android -> Qt | enlace pulsado | `{"type": "link_tapped"}` |
 
-Configure and build manually:
+## Reglas funcionales
 
-```powershell
-cmake -S . -B build\msvc2022 -DCMAKE_BUILD_TYPE=Release
-cmake --build build\msvc2022 --config Release
-```
+- Las pantallas 1–4 deben mantener un layout visual consistente.
+- El panel del mensaje debe mostrar siempre el mensaje acumulado.
+- Si cambia el tipo, se deben resetear las capas posteriores.
+- La pantalla 5 solo se alcanza por evento de protocolo, no por navegación directa.
 
-Run the built executable:
+## Tecnología
 
-```powershell
-.\build\msvc2022\Release\under_attack_phishing_qt.exe
-.\build\msvc2022\Release\under_attack_phishing_qt.exe --demo --windowed
-.\build\msvc2022\Release\under_attack_phishing_qt.exe --live --fullscreen
-```
+| Capa | Tecnología |
+|---|---|
+| Plataforma | Windows |
+| Framework | Qt Widgets |
+| Lenguaje | C++ |
+| Comunicación | WebSocket + UDP beacon |
+| Build | CMake |
 
-During runtime:
+## Estado actual
 
-- `1` and `2` switch screens
-- `Left Arrow` and `Right Arrow` move between screens
-- `F9` shows or hides the bottom navigation row
-- `F10` shows or hides the `DEMO` / `LIVE` badge
-
-## Template Rules
-
-When copying this project to create a new app:
-
-1. Clone the skeleton into a new directory:
-
-```powershell
-.\clone-skeleton.ps1 ..\new-app-name
-```
-
-The target path may be relative or absolute. It must be provided, must not already exist, and must be outside this skeleton directory. The script copies source/template files and excludes local IDE, build, staging, dist, log, and git metadata.
-
-2. Rename the project and executable in `CMakeLists.txt`.
-3. Replace the two placeholder screens in `PhishingWindow.cpp`.
-4. Keep the launch contract unless the whole Cybershow standard changes.
-5. Keep `F9`, `F10`, number keys, and arrow navigation consistent with the other apps.
-6. Keep read-only display widgets non-focusable so keyboard navigation remains reliable.
-
-## Release Packaging
-
-Use the same deploy flow as the other Cybershow apps:
-
-```powershell
-.\package-release.ps1
-.\package-release.ps1 -Force
-```
-
-The script builds Release, stages the executable and required Qt runtime files, creates `dist\bajo-ataque-phishing-vNN.zip`, updates `releases.json`, and creates a matching git tag when the project is inside a git repository.
-
-The deployable artifact is the zip under `dist\`. It contains `under_attack_phishing_qt.exe`, required Qt DLLs, the Windows platform plugin, this README, and `RUNBOOK.md`.
+- Proyecto clonado desde el skeleton compartido.
+- Renombrado a `phishing_qt`.
+- Servidor WebSocket en `8769` añadido.
+- Beacon UDP en `8770` añadido.
+- Conexión end-to-end con `phishing_android` validada.
+- La UI builder y la pantalla de clímax siguen pendientes de implementación completa.
